@@ -8,6 +8,8 @@ import type { Media } from '@/payload-types'
 import { AddToTripButton } from '@/components/cart/AddToTripButton'
 import type { CartItem } from '@/components/cart/CartContext'
 import { categoryLabel, durationLabel, formatPrice, regionLabel, SUITED_LABELS } from '@/lib/format'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { packageLd, siteConfig } from '@/lib/seo'
 import styles from './detail.module.css'
 
 type Params = { params: Promise<{ slug: string }> }
@@ -16,7 +18,22 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params
   const pkg = await getPackageBySlug(slug)
   if (!pkg) return { title: 'Package not found' }
-  return { title: pkg.title, description: pkg.shortPitch ?? undefined }
+  const url = `/packages/${pkg.slug}`
+  const img = heroImage(pkg.heroImage)
+  return {
+    title: pkg.title,
+    description: pkg.shortPitch ?? siteConfig.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'website',
+      url,
+      title: `${pkg.title} · Kartikart`,
+      description: pkg.shortPitch ?? siteConfig.description,
+      images: img
+        ? [{ url: img.url, alt: img.alt || pkg.title }]
+        : [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: pkg.title }],
+    },
+  }
 }
 
 function heroImage(img: unknown): { url: string; alt: string } | null {
@@ -48,6 +65,7 @@ export default async function PackageDetailPage({ params }: Params) {
 
   return (
     <main>
+      <JsonLd data={packageLd(pkg)} />
       {/* Header band */}
       <section className={styles.head}>
         <div className="kk-container">

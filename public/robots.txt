@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /trip
+
+Sitemap: https://www.kartikart.in/sitemap.xml
+Host: https://www.kartikart.in
