@@ -12,6 +12,10 @@ import { getSiteSettings } from '@/lib/queries'
 import { siteConfig, travelAgencyLd } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/JsonLd'
 
+// Render frontend pages dynamically: admin edits appear immediately, and the
+// build never depends on a live database (important for serverless deploys).
+export const dynamic = 'force-dynamic'
+
 const TITLE = 'Kartikart — Tour & Travel Agency, Deoghar'
 
 export const metadata: Metadata = {
