@@ -30,8 +30,17 @@ export function Footer({ settings }: { settings: SiteSetting }) {
 
           <div className={styles.linksCol}>
             <h4>Explore</h4>
-            <Link href="/">Home</Link>
-            <Link href="/packages">Tour Packages</Link>
+            <Link href="/packages">Packages</Link>
+            <Link href="/fleet">Fleet</Link>
+            <Link href="/stays">Stays</Link>
+            <Link href="/experiences">Food &amp; Heritage</Link>
+          </div>
+
+          <div className={styles.linksCol}>
+            <h4>Company</h4>
+            <Link href="/stories">Stories</Link>
+            <Link href="/about">About</Link>
+            <Link href="/contact">Contact</Link>
             <Link href="/trip">Your Trip</Link>
           </div>
 

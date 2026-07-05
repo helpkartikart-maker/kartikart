@@ -6,6 +6,7 @@ import { ArrowRight, Luggage, MessageCircle, Trash2 } from 'lucide-react'
 import { useCart } from './CartContext'
 import { buildWhatsappLink, formatTripQuoteMessage, type QuoteItem } from '@/lib/whatsapp'
 import { formatPrice } from '@/lib/format'
+import { logEnquiry } from '@/lib/actions'
 import styles from './TripCheckout.module.css'
 
 const EMPTY = { name: '', phone: '', travelers: '', dates: '', notes: '' }
@@ -17,25 +18,6 @@ export function TripCheckout({ whatsappNumber }: { whatsappNumber: string }) {
   const update =
     (key: keyof typeof EMPTY) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((f) => ({ ...f, [key]: e.target.value }))
-
-  const sendHref = () => {
-    const quoteItems: QuoteItem[] = items.map((i) => ({
-      title: i.title,
-      meta: i.meta ?? undefined,
-      priceFrom: i.priceFrom ?? null,
-    }))
-    const message = formatTripQuoteMessage({
-      items: quoteItems,
-      contact: {
-        name: form.name || undefined,
-        phone: form.phone || undefined,
-        travelers: form.travelers || undefined,
-        dates: form.dates || undefined,
-        notes: form.notes || undefined,
-      },
-    })
-    return buildWhatsappLink({ whatsappNumber, message })
-  }
 
   if (!hydrated) {
     return <div className={styles.loading}>Loading your trip…</div>
@@ -52,6 +34,35 @@ export function TripCheckout({ whatsappNumber }: { whatsappNumber: string }) {
         </Link>
       </div>
     )
+  }
+
+  const quoteItems: QuoteItem[] = items.map((i) => ({
+    title: i.title,
+    meta: i.meta ?? undefined,
+    priceFrom: i.priceFrom ?? null,
+  }))
+  const message = formatTripQuoteMessage({
+    items: quoteItems,
+    contact: {
+      name: form.name || undefined,
+      phone: form.phone || undefined,
+      travelers: form.travelers || undefined,
+      dates: form.dates || undefined,
+      notes: form.notes || undefined,
+    },
+  })
+  const href = buildWhatsappLink({ whatsappNumber, message })
+
+  // Fire-and-forget lead capture, then let the link open WhatsApp.
+  const onSend = () => {
+    logEnquiry({
+      name: form.name || undefined,
+      phone: form.phone || undefined,
+      travelers: form.travelers || undefined,
+      dates: form.dates || undefined,
+      subjectRef: items.map((i) => i.title).join(', '),
+      message,
+    }).catch(() => {})
   }
 
   return (
@@ -146,7 +157,8 @@ export function TripCheckout({ whatsappNumber }: { whatsappNumber: string }) {
           </div>
           <a
             className={`kk-btn kk-btn--wa ${styles.send}`}
-            href={sendHref()}
+            href={href}
+            onClick={onSend}
             target="_blank"
             rel="noopener noreferrer"
           >

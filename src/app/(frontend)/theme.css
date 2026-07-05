@@ -105,6 +105,20 @@ svg {
   padding-block: var(--section-y);
 }
 
+.kk-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
+
+.kk-empty {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 2.75rem;
+  text-align: center;
+  color: var(--muted);
+}
+
 /* Eyebrow with a sindoor (vermilion) dot — encodes "a mark / a beginning" */
 .kk-eyebrow {
   font-family: var(--font-mono), ui-monospace, monospace;

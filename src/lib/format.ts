@@ -19,12 +19,34 @@ export const SUITED_LABELS: Record<string, string> = {
   solo: 'Solo Travelers',
 }
 
+export const FLEET_TYPE_LABELS: Record<string, string> = {
+  suv: 'SUV',
+  sedan: 'Sedan',
+  tempo: 'Tempo Traveller',
+  other: 'Other',
+}
+
+export const STAY_OWNERSHIP_LABELS: Record<string, string> = {
+  owned: 'Kartikart-owned',
+  partner: 'Partner',
+}
+
+export const EXPERIENCE_KIND_LABELS: Record<string, string> = {
+  food: 'Food',
+  heritage: 'Heritage Site',
+  cultural: 'Cultural Experience',
+}
+
 export function regionLabel(r?: string | null): string {
   return r === 'pan-india' ? 'Pan-India' : 'Deoghar & Local'
 }
 
 export function categoryLabel(c?: string | null): string {
   return c ? (CATEGORY_LABELS[c] ?? c) : ''
+}
+
+export function label(map: Record<string, string>, key?: string | null): string {
+  return key ? (map[key] ?? key) : ''
 }
 
 /** "2N / 3D" | "3D" | null */

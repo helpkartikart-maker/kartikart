@@ -6,7 +6,7 @@
 }
 .top {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1.2fr;
+  grid-template-columns: 1.7fr 1fr 1fr 1.2fr;
   gap: 2.5rem;
   padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--line-dark);

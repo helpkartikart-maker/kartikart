@@ -3,10 +3,13 @@ import { chromium } from 'playwright'
 const base = process.env.BASE || 'http://127.0.0.1:3001'
 const shots = [
   { path: '/', name: 'home', w: 1280, h: 900 },
-  { path: '/', name: 'home-mobile', w: 390, h: 844 },
-  { path: '/packages', name: 'packages', w: 1280, h: 900 },
-  { path: '/packages/baba-baidyanath-darshan', name: 'detail', w: 1280, h: 900 },
-  { path: '/trip', name: 'trip', w: 1280, h: 900 },
+  { path: '/fleet', name: 'fleet', w: 1280, h: 900 },
+  { path: '/stays', name: 'stays', w: 1280, h: 900 },
+  { path: '/experiences', name: 'experiences', w: 1280, h: 900 },
+  { path: '/stories', name: 'stories', w: 1280, h: 900 },
+  { path: '/about', name: 'about', w: 1280, h: 900 },
+  { path: '/contact', name: 'contact', w: 1280, h: 900 },
+  { path: '/fleet', name: 'fleet-mobile', w: 390, h: 844 },
 ]
 
 const browser = await chromium.launch()
