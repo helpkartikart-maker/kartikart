@@ -2,6 +2,9 @@ import type { MetadataRoute } from 'next'
 import { siteConfig } from '@/lib/seo'
 import { getAllPackages } from '@/lib/queries'
 
+// Generated on-demand so the build never queries the database.
+export const dynamic = 'force-dynamic'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
   const staticPaths = ['', '/packages', '/fleet', '/stays', '/experiences', '/stories', '/about', '/contact']
