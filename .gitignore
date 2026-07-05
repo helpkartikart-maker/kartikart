@@ -48,6 +48,9 @@ next-env.d.ts
 *.db-shm
 *.db-wal
 
+# Claude Code (machine-specific local settings — not for the shared repo)
+.claude/settings.local.json
+
 # Playwright
 node_modules/
 /test-results/
