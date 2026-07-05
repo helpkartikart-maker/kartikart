@@ -111,6 +111,37 @@
   z-index: -1;
 }
 
+/* Real Baba Baidyanath Dham photo hero (when public/brand/hero-temple.jpg exists) */
+.hero[data-photo='true'] {
+  background: var(--night);
+}
+.hero[data-photo='true'] .sun,
+.hero[data-photo='true'] .skyline {
+  display: none;
+}
+.heroPhoto {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url('/brand/hero-temple.jpg');
+  background-size: cover;
+  background-position: center 32%;
+  filter: blur(7px) saturate(1.05) brightness(0.85);
+  transform: scale(1.1);
+}
+.heroTint {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 18, 44, 0.9) 0%,
+    rgba(11, 30, 68, 0.78) 42%,
+    rgba(23, 40, 92, 0.62) 66%,
+    rgba(217, 138, 63, 0.5) 100%
+  );
+}
+
 @keyframes kkRise {
   from {
     opacity: 0;

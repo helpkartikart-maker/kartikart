@@ -49,6 +49,16 @@
   color: var(--navy);
   letter-spacing: -0.01em;
 }
+.logoImg {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+@media (max-width: 620px) {
+  .logoImg {
+    height: 34px;
+  }
+}
 .nav {
   display: flex;
   align-items: center;

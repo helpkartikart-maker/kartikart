@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -43,11 +45,18 @@ export default async function HomePage() {
     whatsappNumber: settings.whatsappNumber,
     message: generalEnquiryMessage(),
   })
+  const hasHeroPhoto = existsSync(join(process.cwd(), 'public', 'brand', 'hero-temple.jpg'))
 
   return (
     <main>
       {/* ---------- HERO: Deoghar dawn ---------- */}
-      <section className={styles.hero}>
+      <section className={styles.hero} data-photo={hasHeroPhoto ? 'true' : 'false'}>
+        {hasHeroPhoto ? (
+          <>
+            <div className={styles.heroPhoto} aria-hidden />
+            <div className={styles.heroTint} aria-hidden />
+          </>
+        ) : null}
         <div className={styles.sun} aria-hidden />
         <div className={`kk-container ${styles.heroInner}`}>
           <span className={styles.heroEyebrow}>Deoghar · Baba Baidyanath Dham</span>

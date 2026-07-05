@@ -18,7 +18,13 @@ const LINKS = [
   { href: '/contact', label: 'Contact' },
 ]
 
-export function Header({ whatsappNumber }: { whatsappNumber: string }) {
+export function Header({
+  whatsappNumber,
+  hasLogo = false,
+}: {
+  whatsappNumber: string
+  hasLogo?: boolean
+}) {
   const { count, hydrated } = useCart()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -50,8 +56,19 @@ export function Header({ whatsappNumber }: { whatsappNumber: string }) {
     <header className={styles.header} data-scrolled={scrolled} data-open={open}>
       <div className={`kk-container ${styles.inner}`}>
         <Link href="/" className={styles.brand} aria-label="Kartikart — home">
-          <span className={styles.mark}>K</span>
-          <span className={styles.name}>Kartikart</span>
+          {hasLogo ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src="/brand/logo.png"
+              alt="Kartikart — Tour & Travel Agency"
+              className={styles.logoImg}
+            />
+          ) : (
+            <>
+              <span className={styles.mark}>K</span>
+              <span className={styles.name}>Kartikart</span>
+            </>
+          )}
         </Link>
 
         <nav className={styles.nav} aria-label="Primary">

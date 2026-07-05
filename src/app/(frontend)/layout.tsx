@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import { fraunces, hanken, spaceMono } from './fonts'
 import './theme.css'
 import { CartProvider } from '@/components/cart/CartContext'
@@ -19,12 +21,13 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const settings = await getSiteSettings()
+  const hasLogo = existsSync(join(process.cwd(), 'public', 'brand', 'logo.png'))
 
   return (
     <html lang="en" className={`${fraunces.variable} ${hanken.variable} ${spaceMono.variable}`}>
       <body>
         <CartProvider>
-          <Header whatsappNumber={settings.whatsappNumber} />
+          <Header whatsappNumber={settings.whatsappNumber} hasLogo={hasLogo} />
           {children}
           <Footer settings={settings} />
           <WhatsAppFab whatsappNumber={settings.whatsappNumber} />
