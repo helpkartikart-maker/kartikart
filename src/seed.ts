@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { getPayload } from 'payload'
+import { getPayload, type Where } from 'payload'
 import config from './payload.config'
 
 /**
@@ -47,7 +47,7 @@ async function seed() {
   // --- Helpers --------------------------------------------------------------
   const ensure = async (
     collection: 'packages' | 'fleet' | 'stays' | 'experiences' | 'stories',
-    where: Record<string, unknown>,
+    where: Where,
     data: Record<string, unknown>,
   ) => {
     const found = await payload.find({ collection, where, limit: 1 })

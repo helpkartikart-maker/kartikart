@@ -1,0 +1,44 @@
+.fab {
+  position: fixed;
+  right: clamp(1rem, 3vw, 1.75rem);
+  bottom: clamp(1rem, 3vw, 1.75rem);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 56px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--whatsapp);
+  color: #05331b;
+  box-shadow: 0 14px 30px -10px rgba(37, 211, 102, 0.7);
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease,
+    box-shadow 0.15s ease;
+}
+.fab[data-show='true'] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.fab:hover {
+  box-shadow: 0 18px 36px -10px rgba(37, 211, 102, 0.85);
+}
+.tip {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+@media (max-width: 520px) {
+  .tip {
+    display: none;
+  }
+  .fab {
+    width: 56px;
+    padding: 0;
+    justify-content: center;
+  }
+}

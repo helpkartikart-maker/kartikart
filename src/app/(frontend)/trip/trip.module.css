@@ -1,0 +1,18 @@
+.head {
+  background: linear-gradient(160deg, #0b1e44, #17285c);
+  color: #fff;
+  padding-block: clamp(2.5rem, 6vw, 4rem) clamp(2.25rem, 4vw, 3rem);
+}
+.headTitle {
+  color: #fff;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  margin: 0.7rem 0 0.5rem;
+}
+.headSub {
+  max-width: 52ch;
+  color: var(--muted-light);
+  margin: 0;
+}
+.body {
+  background: var(--paper);
+}

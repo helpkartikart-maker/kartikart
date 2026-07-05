@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { normalizeWhatsappNumber, buildWhatsappLink, packageEnquiryMessage } from './whatsapp'
+import {
+  normalizeWhatsappNumber,
+  buildWhatsappLink,
+  formatTripQuoteMessage,
+  generalEnquiryMessage,
+} from './whatsapp'
 
 describe('normalizeWhatsappNumber', () => {
   it('strips spaces, plus, and punctuation to digits only', () => {
@@ -14,22 +19,34 @@ describe('buildWhatsappLink', () => {
   })
 })
 
-describe('packageEnquiryMessage', () => {
-  it('includes the bolded title, duration, and region', () => {
-    const msg = packageEnquiryMessage({
-      title: 'Baba Baidyanath Darshan',
-      region: 'Deoghar & Local',
-      durationNights: 2,
-      durationDays: 3,
+describe('formatTripQuoteMessage', () => {
+  it('lists selected items with meta and from-price, plus traveller details', () => {
+    const msg = formatTripQuoteMessage({
+      items: [
+        { title: 'Baba Baidyanath Darshan', meta: '2N/3D', priceFrom: 5999 },
+        { title: 'Innova Crysta (cab)', priceFrom: null },
+      ],
+      contact: { name: 'Ramesh', phone: '+91 90000 00000', travelers: 4, dates: 'March', notes: 'Need a big car' },
     })
-    expect(msg).toContain('*Baba Baidyanath Darshan*')
-    expect(msg).toContain('(2N/3D)')
-    expect(msg).toContain('[Deoghar & Local]')
+    expect(msg).toContain('*Kartikart — Trip Quote Request*')
+    expect(msg).toContain('*Selected (2)*')
+    expect(msg).toContain('• Baba Baidyanath Darshan (2N/3D) — from ₹5,999')
+    expect(msg).toContain('• Innova Crysta (cab)')
+    expect(msg).toContain('Ramesh')
+    expect(msg).toContain('Travellers: 4')
+    expect(msg).toContain('Need a big car')
   })
 
-  it('omits duration when nights/days are missing', () => {
-    const msg = packageEnquiryMessage({ title: 'Custom Trip' })
-    expect(msg).toContain('*Custom Trip*')
-    expect(msg).not.toContain('N/')
+  it('works with items only (no contact details)', () => {
+    const msg = formatTripQuoteMessage({ items: [{ title: 'Golden Triangle' }] })
+    expect(msg).toContain('*Selected (1)*')
+    expect(msg).toContain('• Golden Triangle')
+    expect(msg).not.toContain('*Traveller*')
+  })
+})
+
+describe('generalEnquiryMessage', () => {
+  it('returns a friendly opener', () => {
+    expect(generalEnquiryMessage()).toMatch(/plan a trip/i)
   })
 })

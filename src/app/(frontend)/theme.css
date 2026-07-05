@@ -1,0 +1,246 @@
+/* ============================================================
+   Kartikart — "Bhor ki Yatra" design system (tokens + base)
+   Component-specific styles live in *.module.css
+   ============================================================ */
+:root {
+  /* ---- Palette ---- */
+  --night: #0b1e44;
+  --night-700: #102a5c;
+  --navy: #0f2557;
+  --saffron: #f7941e;
+  --saffron-600: #e07e0a;
+  --marigold: #ffc66e;
+  --vermilion: #d9482b;
+  --paper: #fbf6ec;
+  --paper-2: #f4ecd9;
+  --ink: #14223f;
+  --muted: #5b6a89;
+  --muted-light: #b7c1da;
+  --line: #e8e0cd;
+  --line-dark: rgba(255, 255, 255, 0.14);
+  --whatsapp: #25d366;
+
+  /* ---- Type scale (fluid) ---- */
+  --step-eyebrow: 0.78rem;
+  --step-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-h3: clamp(1.25rem, 1.08rem + 0.7vw, 1.6rem);
+  --step-h2: clamp(1.9rem, 1.35rem + 2.1vw, 3.1rem);
+  --step-hero: clamp(2.6rem, 1.5rem + 4.7vw, 5.6rem);
+
+  /* ---- Layout ---- */
+  --container: 1160px;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --section-y: clamp(3.75rem, 7vw, 7rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-size: var(--step-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  font-optical-sizing: auto;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  margin: 0;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--saffron);
+  color: #3a1d00;
+}
+
+:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- Shared utilities ---- */
+.kk-container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1.1rem, 4vw, 2.5rem);
+}
+
+.kk-section {
+  padding-block: var(--section-y);
+}
+
+/* Eyebrow with a sindoor (vermilion) dot — encodes "a mark / a beginning" */
+.kk-eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step-eyebrow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--saffron-600);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0;
+}
+.kk-eyebrow::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--vermilion);
+  flex: none;
+}
+.kk-eyebrow--light {
+  color: var(--marigold);
+}
+
+/* Section heading */
+.kk-h2 {
+  font-size: var(--step-h2);
+  margin-top: 0.5rem;
+}
+
+/* Buttons */
+.kk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55em;
+  padding: 0.9em 1.5em;
+  border-radius: 999px;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+.kk-btn:active {
+  transform: translateY(1px);
+}
+.kk-btn--wa {
+  background: var(--whatsapp);
+  color: #05331b;
+  box-shadow: 0 10px 24px -8px rgba(37, 211, 102, 0.6);
+}
+.kk-btn--wa:hover {
+  background: #20c15b;
+  transform: translateY(-2px);
+}
+.kk-btn--saffron {
+  background: var(--saffron);
+  color: #3a1d00;
+  box-shadow: 0 10px 26px -10px rgba(247, 148, 30, 0.75);
+}
+.kk-btn--saffron:hover {
+  background: var(--saffron-600);
+  transform: translateY(-2px);
+}
+.kk-btn--ghost {
+  background: transparent;
+  border-color: rgba(15, 37, 87, 0.25);
+  color: var(--navy);
+}
+.kk-btn--ghost:hover {
+  border-color: var(--navy);
+  background: rgba(15, 37, 87, 0.04);
+}
+.kk-btn--ghost-light {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.kk-btn--ghost-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Chip / tag */
+.kk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.4em 0.75em;
+  border-radius: 999px;
+  background: rgba(15, 37, 87, 0.06);
+  color: var(--navy);
+}
+.kk-chip--saffron {
+  background: rgba(247, 148, 30, 0.14);
+  color: var(--saffron-600);
+}
+.kk-chip--owned {
+  background: rgba(217, 72, 43, 0.12);
+  color: var(--vermilion);
+}
+
+/* Reveal-on-scroll (paired with Reveal.tsx). Hidden state only applies when JS marks it. */
+.kk-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.kk-reveal[data-shown='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .kk-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
