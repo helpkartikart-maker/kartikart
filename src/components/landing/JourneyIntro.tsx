@@ -14,6 +14,27 @@ const EASE_OUT = [0.32, 0, 0.67, 0] as const
 // destination pin at upper-right. Shared by the drawn line and the car's path.
 const ROUTE = 'M64 182 C 190 118, 330 200, 498 84'
 
+// A stylised road network (Google-Maps-like), drawn as gently curved arterials
+// and straighter side streets so it reads as a real map rather than a plain grid.
+const MAJOR_ROADS = [
+  'M-12 96 C 140 84, 250 104, 400 86 C 480 76, 540 88, 582 82',
+  'M170 -12 C 178 70, 158 150, 182 252',
+  'M330 -12 C 340 60, 352 140, 374 252',
+  'M-12 38 C 120 90, 182 152, 264 252',
+  'M300 252 C 386 202, 434 164, 582 150',
+]
+const MINOR_ROADS = [
+  'M60 -10 L 74 250',
+  'M112 -10 L 100 250',
+  'M240 -10 L 252 250',
+  'M430 -10 L 442 250',
+  'M500 -10 L 490 250',
+  'M-10 150 L 572 140',
+  'M-10 202 L 572 206',
+  'M-10 55 L 572 48',
+]
+const HIGHWAY = 'M-12 128 C 150 120, 262 138, 420 116 C 502 105, 552 118, 582 112'
+
 export function JourneyIntro({ onDone }: { onDone?: () => void }) {
   const [show, setShow] = useState(true)
 
@@ -80,17 +101,24 @@ export function JourneyIntro({ onDone }: { onDone?: () => void }) {
                 <g clipPath="url(#kkCardClip)">
                   <rect x="2" y="2" width="556" height="236" className={styles.card} />
 
-                  {/* faint map grid */}
-                  {Array.from({ length: 9 }, (_, i) => (
-                    <line key={`v${i}`} x1={4 + i * 62} y1={2} x2={4 + i * 62} y2={238} className={styles.grid} />
-                  ))}
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <line key={`h${i}`} x1={2} y1={6 + i * 57} x2={558} y2={6 + i * 57} className={styles.grid} />
+                  {/* water body + park (land features) */}
+                  <path d="M-10 -10 C 66 -10, 116 24, 102 60 C 70 76, 18 64, -10 47 Z" className={styles.water} />
+                  <path d="M452 252 C 460 206, 502 188, 548 197 C 578 203, 576 242, 566 256 Z" className={styles.park} />
+
+                  {/* minor side streets (underneath) */}
+                  {MINOR_ROADS.map((d, i) => (
+                    <path key={`mi${i}`} d={d} className={styles.roadMinor} />
                   ))}
 
-                  {/* a couple of subtle "roads" */}
-                  <path d="M-10 150 C 120 150, 180 60, 320 60 S 520 120, 580 120" className={styles.road} />
-                  <path d="M120 250 L 220 120 L 300 190 L 430 40" className={styles.road} />
+                  {/* major roads — dark casing first, lighter fill on top (the classic map look) */}
+                  {MAJOR_ROADS.map((d, i) => (
+                    <path key={`mc${i}`} d={d} className={styles.roadCasing} />
+                  ))}
+                  <path d={HIGHWAY} className={styles.highwayCasing} />
+                  {MAJOR_ROADS.map((d, i) => (
+                    <path key={`mf${i}`} d={d} className={styles.roadFill} />
+                  ))}
+                  <path d={HIGHWAY} className={styles.highway} />
 
                   {/* the route, drawn on */}
                   <motion.path
