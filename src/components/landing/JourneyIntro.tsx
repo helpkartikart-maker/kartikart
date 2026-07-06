@@ -114,11 +114,11 @@ export function JourneyIntro({ onDone }: { onDone?: () => void }) {
                   {MAJOR_ROADS.map((d, i) => (
                     <path key={`mc${i}`} d={d} className={styles.roadCasing} />
                   ))}
-                  <path d={HIGHWAY} className={styles.highwayCasing} />
+                  <path d={HIGHWAY} className={styles.roadCasing} />
                   {MAJOR_ROADS.map((d, i) => (
                     <path key={`mf${i}`} d={d} className={styles.roadFill} />
                   ))}
-                  <path d={HIGHWAY} className={styles.highway} />
+                  <path d={HIGHWAY} className={styles.roadFill} />
 
                   {/* the route, drawn on */}
                   <motion.path

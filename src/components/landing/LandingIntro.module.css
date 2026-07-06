@@ -80,19 +80,6 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.highwayCasing {
-  fill: none;
-  stroke: #6f5417;
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.highway {
-  fill: none;
-  stroke: rgba(255, 198, 110, 0.34);
-  stroke-width: 3;
-  stroke-linecap: round;
-}
 .route {
   fill: none;
   stroke: var(--saffron);
