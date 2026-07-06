@@ -8,7 +8,7 @@ import { CartProvider } from '@/components/cart/CartContext'
 import { Header } from '@/components/chrome/Header'
 import { Footer } from '@/components/chrome/Footer'
 import { WhatsAppFab } from '@/components/chrome/WhatsAppFab'
-import { AnnouncementBar } from '@/components/chrome/AnnouncementBar'
+import { PromoMarquee } from '@/components/chrome/PromoMarquee'
 import { getSiteSettings } from '@/lib/queries'
 import { siteConfig, travelAgencyLd } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -72,9 +72,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <a href="#main-content" className="kk-skip">
           Skip to content
         </a>
-        <AnnouncementBar />
         <CartProvider>
           <Header whatsappNumber={settings.whatsappNumber} hasLogo={hasLogo} />
+          <PromoMarquee />
           <div id="main-content" tabIndex={-1}>
             {children}
           </div>

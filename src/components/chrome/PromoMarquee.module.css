@@ -1,0 +1,52 @@
+.wrap {
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--saffron-600), var(--saffron), #ffbe5c, var(--saffron), var(--saffron-600));
+  color: #3a1d00;
+  border-block: 1px solid rgba(58, 29, 0, 0.12);
+}
+.track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: kkMarquee 34s linear infinite;
+}
+.wrap:hover .track {
+  animation-play-state: paused;
+}
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.sep {
+  color: #a15200;
+  margin: 0 1.15rem;
+  font-size: 0.8rem;
+}
+.badge {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  background: #3a1d00;
+  color: var(--marigold);
+  padding: 0.12em 0.5em;
+  border-radius: 999px;
+}
+@keyframes kkMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    justify-content: center;
+  }
+}
