@@ -68,7 +68,7 @@ export function formatTripQuoteMessage(params: { items: QuoteItem[]; contact?: Q
     L.push('')
   }
 
-  L.push('Please apply my *5% website discount* and share your best quote. 🙏')
+  L.push('Please apply my *website discount (up to 10%)* and share your best quote. 🙏')
   L.push('— Sent from kartikart.in')
   return L.join('\n')
 }

@@ -32,12 +32,12 @@ export const SiteSettings: GlobalConfig = {
       type: 'collapsible',
       label: 'Contact & Social',
       fields: [
-        { name: 'phone', type: 'text', defaultValue: '+91 9304781234' },
+        { name: 'phone', type: 'text', defaultValue: '+91 92044 19881' },
         {
           name: 'whatsappNumber',
           type: 'text',
           required: true,
-          defaultValue: '916201234567',
+          defaultValue: '919204419881',
           admin: { description: 'Digits only, with country code (used for wa.me booking links).' },
         },
         { name: 'email', type: 'email' },

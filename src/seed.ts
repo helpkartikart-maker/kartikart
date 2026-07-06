@@ -35,8 +35,8 @@ async function seed() {
       brandTagline: 'Har Safar, Yaadgaar Safar',
       heroHeadline: 'Taxi se Hotel tak, Khana se Heritage tak',
       heroSubline: 'Sab Kuch Best, Sirf Aapke Liye!',
-      phone: '+91 9304781234',
-      whatsappNumber: '916201234567',
+      phone: '+91 92044 19881',
+      whatsappNumber: '919204419881',
       instagram: '@kartikart.travels',
       address: 'Deoghar, Jharkhand 814112',
       whatsappDefaultMessage:

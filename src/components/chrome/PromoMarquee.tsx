@@ -4,7 +4,7 @@ const ITEMS: { text: string; hot?: boolean }[] = [
   { text: 'on every booking made on the website', hot: true },
   { text: 'Har Safar, Yaadgaar Safar' },
   { text: 'Taxi se Hotel tak, Khana se Heritage tak' },
-  { text: 'Deoghar · Bashukinath · Sultanganj · Trikut Pahad · Gangtok · Darjeeling' },
+  { text: 'Deoghar · Bashukinath · Sultanganj · Trikut · Gaya · Bodh Gaya · Tarapith · Gangtok · Darjeeling' },
 ]
 
 // Continuously scrolling promo ticker (CSS-only, not dismissible). Pauses on hover.
@@ -20,7 +20,7 @@ export function PromoMarquee() {
             </span>
             {it.hot ? (
               <>
-                <span className={styles.badge}>5% OFF</span> {it.text}
+                <span className={styles.badge}>UP TO 10% OFF</span> {it.text}
               </>
             ) : (
               it.text
