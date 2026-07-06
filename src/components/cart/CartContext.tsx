@@ -12,6 +12,13 @@ import {
 
 export type CartKind = 'package' | 'car' | 'hotel' | 'experience'
 
+/** When the traveller wants this item — a single date (packages) or a range (rentals/stays), plus a start/pickup time. ISO `YYYY-MM-DD` and 24h `HH:MM`. */
+export type CartSchedule = {
+  startDate?: string
+  endDate?: string
+  time?: string
+}
+
 export type CartItem = {
   /** unique key, e.g. `package:baba-baidyanath-darshan` */
   id: string
@@ -20,6 +27,7 @@ export type CartItem = {
   slug?: string
   priceFrom?: number | null
   meta?: string | null
+  schedule?: CartSchedule
 }
 
 type CartValue = {
@@ -30,6 +38,7 @@ type CartValue = {
   add: (item: CartItem) => void
   remove: (id: string) => void
   toggle: (item: CartItem) => void
+  update: (id: string, patch: Partial<CartItem>) => void
   clear: () => void
 }
 
@@ -82,11 +91,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
       ),
     [],
   )
+  const update = useCallback(
+    (id: string, patch: Partial<CartItem>) =>
+      setItems((prev) => prev.map((i) => (i.id === id ? { ...i, ...patch } : i))),
+    [],
+  )
   const clear = useCallback(() => setItems([]), [])
 
   const value = useMemo<CartValue>(
-    () => ({ items, count: items.length, hydrated, has, add, remove, toggle, clear }),
-    [items, hydrated, has, add, remove, toggle, clear],
+    () => ({ items, count: items.length, hydrated, has, add, remove, toggle, update, clear }),
+    [items, hydrated, has, add, remove, toggle, update, clear],
   )
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

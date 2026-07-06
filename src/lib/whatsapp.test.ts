@@ -44,6 +44,14 @@ describe('formatTripQuoteMessage', () => {
     expect(msg).toContain('• Golden Triangle')
     expect(msg).not.toContain('*Traveller*')
   })
+
+  it("includes each item's chosen date/time when provided", () => {
+    const msg = formatTripQuoteMessage({
+      items: [{ title: 'Deoghar ⇄ Ranchi Taxi', priceFrom: 4499, when: '4–7 Jul 2026 · pickup 6:00 AM' }],
+    })
+    expect(msg).toContain('• Deoghar ⇄ Ranchi Taxi — from ₹4,499')
+    expect(msg).toContain('🗓️ 4–7 Jul 2026 · pickup 6:00 AM')
+  })
 })
 
 describe('generalEnquiryMessage', () => {

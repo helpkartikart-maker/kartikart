@@ -18,6 +18,8 @@ export type QuoteItem = {
   title: string
   meta?: string | null
   priceFrom?: number | null
+  /** Human date/time, e.g. "4–7 Jul 2026 · pickup 6:00 AM". */
+  when?: string | null
 }
 
 /** Traveller-supplied details captured at checkout. */
@@ -59,6 +61,7 @@ export function formatTripQuoteMessage(params: { items: QuoteItem[]; contact?: Q
     const meta = i.meta ? ` (${i.meta})` : ''
     const price = i.priceFrom ? ` — from ${rupee(i.priceFrom)}` : ''
     L.push(`• ${i.title}${meta}${price}`)
+    if (i.when) L.push(`   🗓️ ${i.when}`)
   })
   L.push('')
 

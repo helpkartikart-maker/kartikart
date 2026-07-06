@@ -1,0 +1,113 @@
+.wrap {
+  margin-top: 0.85rem;
+}
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.toggle svg {
+  flex-shrink: 0;
+}
+.summary {
+  flex: 1;
+  font-weight: 600;
+}
+.chev {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+/* Needs a date — draw attention. */
+.unset {
+  border: 1.5px dashed var(--saffron);
+  background: rgba(247, 148, 30, 0.08);
+  color: var(--saffron-600);
+}
+.unset:hover {
+  background: rgba(247, 148, 30, 0.14);
+}
+/* Date chosen — calm, done. */
+.set {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--navy);
+}
+.set:hover {
+  border-color: var(--saffron);
+}
+
+.panel {
+  margin-top: 0.7rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+.count {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.timeField {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 340px;
+  font-size: 0.85rem;
+  color: var(--navy);
+  font-weight: 600;
+}
+.timeLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.timeSelect {
+  flex: 1;
+  max-width: 170px;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--navy);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+.timeSelect:focus {
+  outline: none;
+  border-color: var(--saffron);
+}
+.done {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.done:hover {
+  background: var(--night-700);
+}
