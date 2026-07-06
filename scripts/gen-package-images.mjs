@@ -91,9 +91,15 @@ const PACKAGES = [
   { slug: 'deoghar-ranchi-taxi', label: 'Deoghar – Ranchi', sublabel: 'Taxi Service', theme: 'rental' },
   { slug: 'daily-rentals', label: 'Daily Rentals', sublabel: 'By the Day', theme: 'rental' },
   { slug: 'marriage-event-rentals', label: 'Marriage & Events', sublabel: 'Decorated Fleet', theme: 'rental' },
+  { slug: 'deoghar-gaya-bodhgaya', label: 'Gaya · Bodh Gaya', sublabel: 'Vishnupad · Mahabodhi', theme: 'temple' },
+  { slug: 'deoghar-tarapith', label: 'Tarapith', sublabel: 'Shakti Peeth · Bengal', theme: 'temple' },
 ]
 
+// Optionally limit to specific slugs: `node gen-package-images.mjs <slug> <slug>`
+// (so we don't overwrite slugs that already have real fetched photos).
+const only = process.argv.slice(2)
 for (const p of PACKAGES) {
+  if (only.length && !only.includes(p.slug)) continue
   await sharp(Buffer.from(buildSvg(p))).jpeg({ quality: 82 }).toFile(`public/packages/${p.slug}.jpg`)
   console.log('wrote', p.slug)
 }

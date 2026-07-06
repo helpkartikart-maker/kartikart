@@ -114,6 +114,13 @@
   color: var(--muted);
   font-size: 0.8rem;
 }
+.was {
+  margin-left: 0.4rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: line-through;
+  font-size: 0.82rem;
+}
 .detailLink {
   display: inline-flex;
   align-items: center;

@@ -51,6 +51,7 @@ export default async function PackageDetailPage({ params }: Params) {
 
   const img = heroImage(pkg.heroImage)
   const price = formatPrice(pkg.priceFrom)
+  const wasPrice = formatPrice(pkg.compareAtPrice)
   const dur = durationLabel(pkg.durationNights, pkg.durationDays)
   const suited = (pkg.suitedFor ?? []).map((s) => SUITED_LABELS[s] ?? s)
 
@@ -171,6 +172,7 @@ export default async function PackageDetailPage({ params }: Params) {
                   <>
                     <span className={styles.priceLabel}>from</span>
                     <span className={styles.price}>{price}</span>
+                    {wasPrice ? <s className={styles.wasPrice}>{wasPrice}</s> : null}
                     {pkg.priceNote ? <span className={styles.priceNote}>{pkg.priceNote}</span> : null}
                   </>
                 ) : (

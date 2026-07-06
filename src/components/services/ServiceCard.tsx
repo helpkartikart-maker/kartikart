@@ -19,6 +19,7 @@ export function ServiceCard({
   title,
   metaLines,
   priceFrom,
+  compareAt,
   priceNote,
   cartItem,
   owned = false,
@@ -29,12 +30,14 @@ export function ServiceCard({
   title: string
   metaLines?: string[]
   priceFrom?: number | null
+  compareAt?: number | null
   priceNote?: string | null
   cartItem: CartItem
   owned?: boolean
 }) {
   const Icon = ICONS[cartItem.kind] ?? Landmark
   const price = formatPrice(priceFrom)
+  const was = formatPrice(compareAt)
 
   return (
     <article className={styles.card}>
@@ -67,6 +70,7 @@ export function ServiceCard({
             {price ? (
               <>
                 <em>from</em> {price}
+                {was ? <s className={styles.was}>{was}</s> : null}
                 {priceNote ? <small> {priceNote}</small> : null}
               </>
             ) : (

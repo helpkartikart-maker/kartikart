@@ -153,7 +153,11 @@ export interface Package {
    */
   priceFrom?: number | null;
   /**
-   * e.g. "per person" or "on request"
+   * Original price, shown struck through (optional — for a discount)
+   */
+  compareAtPrice?: number | null;
+  /**
+   * e.g. "per cab" or "per person"
    */
   priceNote?: string | null;
   heroImage?: (number | null) | Media;
@@ -261,7 +265,11 @@ export interface Fleet {
    */
   rate?: number | null;
   /**
-   * e.g. "per km" or "on request"
+   * Original rate, shown struck through (optional)
+   */
+  compareAtRate?: number | null;
+  /**
+   * e.g. "8 hrs / 80 km" or "on request"
    */
   rateNote?: string | null;
   ownedByKartikart?: boolean | null;
@@ -543,6 +551,7 @@ export interface PackagesSelect<T extends boolean = true> {
   durationDays?: T;
   durationNights?: T;
   priceFrom?: T;
+  compareAtPrice?: T;
   priceNote?: T;
   heroImage?: T;
   gallery?:
@@ -605,6 +614,7 @@ export interface FleetSelect<T extends boolean = true> {
         id?: T;
       };
   rate?: T;
+  compareAtRate?: T;
   rateNote?: T;
   ownedByKartikart?: T;
   status?: T;

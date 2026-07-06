@@ -11,3 +11,5 @@ Keep the attribution if you keep the image, or replace it with your own (same fi
 - **deoghar-darjeeling.jpg** — “Kanchenjunga from Tiger Hills.JPG” · DC Assam · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Kanchenjunga_from_Tiger_Hills.JPG
 - **deoghar-dhanbad-taxi.jpg** — “Topchanchi Lake1.jpg” · Bpagla · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Topchanchi_Lake1.jpg
 - **deoghar-ranchi-taxi.jpg** — “Hundru Falls, Ranchi.jpg” · RISHABH GAURAV · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Hundru_Falls,_Ranchi.jpg
+- **deoghar-gaya-bodhgaya.jpg** — “Mahabodhi Temple Complex, Bodhgaya (8717524046).jpg” · Matt Stabile · CC BY 2.0 · https://commons.wikimedia.org/wiki/File:Mahabodhi_Temple_Complex,_Bodhgaya_(8717524046).jpg
+- **deoghar-tarapith.jpg** — “Tarapith Kali temple at Tarapith 02.jpg” · Pinakpani · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Tarapith_Kali_temple_at_Tarapith_02.jpg

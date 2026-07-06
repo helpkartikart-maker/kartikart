@@ -12,6 +12,8 @@ const TARGETS = [
   { slug: 'deoghar-darjeeling', tries: [['Kanchenjunga Darjeeling', 'kanchenjunga'], ['Darjeeling tea estate', 'darjeeling'], ['Darjeeling town view', 'darjeeling']] },
   { slug: 'deoghar-dhanbad-taxi', tries: [['Maithon Dam', 'maithon'], ['Topchanchi Lake', 'topchanchi'], ['Panchet Dam', 'panchet']] },
   { slug: 'deoghar-ranchi-taxi', tries: [['Hundru Falls', 'hundru'], ['Dassam Falls', 'dassam'], ['Jonha Falls', 'jonha'], ['Patratu Valley', 'patratu']] },
+  { slug: 'deoghar-gaya-bodhgaya', tries: [['Mahabodhi Temple Bodh Gaya', 'mahabodhi'], ['Mahabodhi Temple', 'mahabodhi'], ['Bodh Gaya temple', 'bodh']] },
+  { slug: 'deoghar-tarapith', tries: [['Tarapith temple', 'tarapith'], ['Tarapith Mandir', 'tarapith'], ['Tara Maa Tarapith', 'tarapith']] },
 ]
 
 const UA = 'KartikartSiteBot/1.0 (brand placeholder images; kartikart.in)'

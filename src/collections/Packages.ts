@@ -69,7 +69,12 @@ export const Packages: CollectionConfig = {
       type: 'row',
       fields: [
         { name: 'priceFrom', type: 'number', admin: { description: 'Starting price in ₹' } },
-        { name: 'priceNote', type: 'text', admin: { description: 'e.g. "per person" or "on request"' } },
+        {
+          name: 'compareAtPrice',
+          type: 'number',
+          admin: { description: 'Original price, shown struck through (optional — for a discount)' },
+        },
+        { name: 'priceNote', type: 'text', admin: { description: 'e.g. "per cab" or "per person"' } },
       ],
     },
     { name: 'heroImage', type: 'upload', relationTo: 'media' },

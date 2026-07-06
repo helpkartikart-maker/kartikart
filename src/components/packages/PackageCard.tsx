@@ -18,6 +18,7 @@ function heroImage(pkg: Package): { url: string; alt: string } | null {
 export function PackageCard({ pkg }: { pkg: Package }) {
   const img = heroImage(pkg)
   const price = formatPrice(pkg.priceFrom)
+  const wasPrice = formatPrice(pkg.compareAtPrice)
   const dur = durationLabel(pkg.durationNights, pkg.durationDays)
   const href = `/packages/${pkg.slug}`
 
@@ -66,6 +67,7 @@ export function PackageCard({ pkg }: { pkg: Package }) {
             {price ? (
               <>
                 <em>from</em> {price}
+                {wasPrice ? <s className={styles.was}>{wasPrice}</s> : null}
               </>
             ) : (
               'On request'

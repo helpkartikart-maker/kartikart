@@ -51,6 +51,7 @@ export default async function FleetPage() {
                       image={resolveMedia(c.photo)}
                       metaLines={metaLines}
                       priceFrom={c.rate}
+                      compareAt={c.compareAtRate}
                       priceNote={c.rateNote}
                       cartItem={cartItem}
                     />

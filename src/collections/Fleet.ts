@@ -35,7 +35,12 @@ export const Fleet: CollectionConfig = {
       type: 'row',
       fields: [
         { name: 'rate', type: 'number', admin: { description: 'Numeric rate in ₹' } },
-        { name: 'rateNote', type: 'text', admin: { description: 'e.g. "per km" or "on request"' } },
+        {
+          name: 'compareAtRate',
+          type: 'number',
+          admin: { description: 'Original rate, shown struck through (optional)' },
+        },
+        { name: 'rateNote', type: 'text', admin: { description: 'e.g. "8 hrs / 80 km" or "on request"' } },
       ],
     },
     {
