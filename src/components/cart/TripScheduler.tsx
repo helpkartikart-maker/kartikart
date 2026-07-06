@@ -2,46 +2,15 @@
 
 import { useState } from 'react'
 import { CalendarDays, Check, Clock } from 'lucide-react'
-import { useCart, type CartItem, type CartKind, type CartSchedule } from './CartContext'
+import { useCart, type CartItem, type CartSchedule } from './CartContext'
 import { Calendar } from './Calendar'
-import { formatDateRange, formatNiceDate, formatTime, nightsBetween, TIME_SLOTS } from '@/lib/datetime'
+import { SCHEDULE_CONFIG, describeWhen, rangeCount } from './schedule'
+import { formatTime, TIME_SLOTS } from '@/lib/datetime'
 import styles from './TripScheduler.module.css'
-
-type KindConfig = {
-  mode: 'single' | 'range'
-  prompt: string
-  timeLabel: string
-  timeWord: string
-  unit?: 'days' | 'nights'
-}
-
-const CONFIG: Record<CartKind, KindConfig> = {
-  package: { mode: 'single', prompt: 'Add trip date & pickup time', timeLabel: 'Pickup time', timeWord: 'pickup' },
-  experience: { mode: 'single', prompt: 'Add date & time', timeLabel: 'Preferred time', timeWord: 'around' },
-  car: { mode: 'range', prompt: 'Add rental dates & pickup', timeLabel: 'Pickup time', timeWord: 'pickup', unit: 'days' },
-  hotel: { mode: 'range', prompt: 'Add check-in & check-out', timeLabel: 'Check-in time', timeWord: 'check-in', unit: 'nights' },
-}
-
-/** Human summary of an item's chosen date/time, e.g. "4–7 Jul 2026 · pickup 6:00 AM". Empty if no date yet. */
-export function describeWhen(item: CartItem): string {
-  const s = item.schedule
-  if (!s?.startDate) return ''
-  const cfg = CONFIG[item.kind]
-  const datePart = cfg.mode === 'range' ? formatDateRange(s.startDate, s.endDate) : formatNiceDate(s.startDate)
-  const timePart = s.time ? ` · ${cfg.timeWord} ${formatTime(s.time)}` : ''
-  return `${datePart}${timePart}`
-}
-
-function rangeCount(start: string, end: string, unit?: 'days' | 'nights'): string {
-  const nights = nightsBetween(start, end)
-  if (unit === 'nights') return `${nights} night${nights === 1 ? '' : 's'} stay`
-  const days = nights + 1
-  return `${days} day${days === 1 ? '' : 's'} selected`
-}
 
 export function TripScheduler({ item }: { item: CartItem }) {
   const { update } = useCart()
-  const cfg = CONFIG[item.kind]
+  const cfg = SCHEDULE_CONFIG[item.kind]
   const s = item.schedule ?? {}
   const [open, setOpen] = useState(false)
   const summary = describeWhen(item)
