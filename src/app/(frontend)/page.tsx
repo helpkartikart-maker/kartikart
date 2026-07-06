@@ -17,6 +17,7 @@ import { buildWhatsappLink, generalEnquiryMessage } from '@/lib/whatsapp'
 import { PackageCard } from '@/components/packages/PackageCard'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
+import { LandingIntro } from '@/components/landing/LandingIntro'
 import styles from './home.module.css'
 
 const STAGES = [
@@ -49,6 +50,7 @@ export default async function HomePage() {
 
   return (
     <main>
+      <LandingIntro />
       {/* ---------- HERO: Deoghar dawn ---------- */}
       <section className={styles.hero} data-photo={hasHeroPhoto ? 'true' : 'false'}>
         {hasHeroPhoto ? (

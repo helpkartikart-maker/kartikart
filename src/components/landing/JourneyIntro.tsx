@@ -1,0 +1,188 @@
+'use client'
+
+import Image from 'next/image'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import styles from './LandingIntro.module.css'
+
+// Signature smooth deceleration (easeOutExpo) for entrances; a sharper
+// accelerating curve for the exit — tuned to feel unhurried but not slow.
+const EASE = [0.16, 1, 0.3, 1] as const
+const EASE_OUT = [0.32, 0, 0.67, 0] as const
+
+// The GPS route the car drives — a gentle curve from lower-left to the
+// destination pin at upper-right. Shared by the drawn line and the car's path.
+const ROUTE = 'M64 182 C 190 118, 330 200, 498 84'
+
+export function JourneyIntro({ onDone }: { onDone?: () => void }) {
+  const [show, setShow] = useState(true)
+
+  useEffect(() => {
+    const t = setTimeout(() => setShow(false), 4300)
+    return () => clearTimeout(t)
+  }, [])
+
+  return (
+    <AnimatePresence onExitComplete={() => onDone?.()}>
+      {show && (
+        <motion.div
+          className={styles.overlay}
+          aria-hidden
+          onClick={() => setShow(false)}
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0, y: 70, scale: 0.97 }}
+          transition={{ duration: 0.7, ease: EASE_OUT }}
+        >
+          <motion.div
+            className={styles.glow}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          />
+
+          <div className={styles.stage}>
+            {/* Logo blooms in the centre */}
+            <motion.div
+              className={styles.badge}
+              initial={{ opacity: 0, scale: 0.7, filter: 'blur(12px)' }}
+              animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+              transition={{ delay: 1.5, duration: 0.9, ease: EASE }}
+            >
+              <Image
+                src="/brand/logo.png"
+                alt="Kartikart"
+                width={580}
+                height={200}
+                priority
+                className={styles.logo}
+              />
+            </motion.div>
+
+            {/* The map journey */}
+            <motion.div
+              className={styles.mapWrap}
+              initial={{ opacity: 0, scale: 0.94, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.7, ease: EASE }}
+            >
+              <svg
+                viewBox="0 0 560 240"
+                className={styles.map}
+                role="img"
+                aria-label="A car travels across the map to its destination"
+              >
+                <defs>
+                  <clipPath id="kkCardClip">
+                    <rect x="2" y="2" width="556" height="236" rx="20" />
+                  </clipPath>
+                </defs>
+
+                <g clipPath="url(#kkCardClip)">
+                  <rect x="2" y="2" width="556" height="236" className={styles.card} />
+
+                  {/* faint map grid */}
+                  {Array.from({ length: 9 }, (_, i) => (
+                    <line key={`v${i}`} x1={4 + i * 62} y1={2} x2={4 + i * 62} y2={238} className={styles.grid} />
+                  ))}
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <line key={`h${i}`} x1={2} y1={6 + i * 57} x2={558} y2={6 + i * 57} className={styles.grid} />
+                  ))}
+
+                  {/* a couple of subtle "roads" */}
+                  <path d="M-10 150 C 120 150, 180 60, 320 60 S 520 120, 580 120" className={styles.road} />
+                  <path d="M120 250 L 220 120 L 300 190 L 430 40" className={styles.road} />
+
+                  {/* the route, drawn on */}
+                  <motion.path
+                    id="kkRoute"
+                    d={ROUTE}
+                    className={styles.route}
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ delay: 0.7, duration: 1.1, ease: 'easeInOut' }}
+                  />
+
+                  {/* the car driving the route */}
+                  <motion.g
+                    style={{ offsetPath: `path('${ROUTE}')`, offsetRotate: 'auto' }}
+                    initial={{ offsetDistance: '0%' }}
+                    animate={{ offsetDistance: '100%' }}
+                    transition={{ delay: 1.0, duration: 1.35, ease: EASE }}
+                  >
+                    <ellipse cx="0" cy="11" rx="19" ry="3.5" fill="#000" opacity="0.18" />
+                    <rect x="-19" y="-5" width="38" height="13" rx="5" fill="#ffc66e" />
+                    <path d="M-11 -5 L-6 -14 L8 -14 L13 -5 Z" fill="#ffd98a" />
+                    <rect x="-5" y="-12" width="11" height="6" rx="1.5" fill="#0b1e44" opacity="0.55" />
+                    <circle cx="-10" cy="8" r="4.5" fill="#0b1e44" />
+                    <circle cx="-10" cy="8" r="1.8" fill="#ffc66e" />
+                    <circle cx="11" cy="8" r="4.5" fill="#0b1e44" />
+                    <circle cx="11" cy="8" r="1.8" fill="#ffc66e" />
+                    <circle cx="18" cy="-1" r="1.8" fill="#fff8e6" />
+                  </motion.g>
+
+                  {/* destination pin + ping */}
+                  <g transform="translate(498 84)">
+                    <motion.circle
+                      cx="0"
+                      cy="1"
+                      r="0"
+                      className={styles.ping}
+                      initial={{ opacity: 0 }}
+                      animate={{ r: [0, 16, 26], opacity: [0.55, 0.25, 0] }}
+                      transition={{ delay: 2.55, duration: 0.9, ease: 'easeOut' }}
+                    />
+                    <motion.g
+                      initial={{ y: -48, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 2.15, duration: 0.6, ease: EASE }}
+                    >
+                      <path d="M0 0 C -11 -15 -11 -28 0 -33 C 11 -28 11 -15 0 0 Z" className={styles.pin} />
+                      <circle cx="0" cy="-21" r="4.6" className={styles.pinHole} />
+                    </motion.g>
+                  </g>
+
+                  {/* the family setting off (couple + child) */}
+                  <motion.g
+                    fill="#efe6d0"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 2.4, duration: 0.6, ease: EASE }}
+                  >
+                    <circle cx="62" cy="196" r="5.5" />
+                    <path d="M54 220 Q54 203 62 203 Q70 203 70 220 Z" />
+                    <circle cx="80" cy="194" r="5.5" />
+                    <path d="M72 220 Q72 201 80 201 Q88 201 88 220 Z" />
+                    <circle cx="94" cy="202" r="4" />
+                    <path d="M88 220 Q88 208 94 208 Q100 208 100 220 Z" />
+                  </motion.g>
+                </g>
+
+                {/* card border on top */}
+                <rect x="2" y="2" width="556" height="236" rx="20" className={styles.cardBorder} />
+              </svg>
+            </motion.div>
+
+            {/* tagline */}
+            <motion.p
+              className={styles.tagline}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.7, duration: 0.6, ease: EASE }}
+            >
+              Har Safar, Yaadgaar Safar
+            </motion.p>
+          </div>
+
+          <motion.span
+            className={styles.skip}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.55 }}
+            transition={{ delay: 2.6, duration: 0.5 }}
+          >
+            Tap to skip
+          </motion.span>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
