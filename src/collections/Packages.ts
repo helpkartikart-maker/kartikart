@@ -34,6 +34,7 @@ export const Packages: CollectionConfig = {
         { label: 'Wildlife', value: 'wildlife' },
         { label: 'Beach', value: 'beach' },
         { label: 'Cultural', value: 'cultural' },
+        { label: 'Rentals', value: 'rental' },
       ],
     },
     {

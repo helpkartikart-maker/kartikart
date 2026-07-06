@@ -35,6 +35,7 @@ describe('formatTripQuoteMessage', () => {
     expect(msg).toContain('Ramesh')
     expect(msg).toContain('Travellers: 4')
     expect(msg).toContain('Need a big car')
+    expect(msg).toContain('5% website discount')
   })
 
   it('works with items only (no contact details)', () => {

@@ -143,7 +143,7 @@ export interface Package {
   slug: string;
   status: 'draft' | 'published';
   featured?: boolean | null;
-  category: 'spiritual' | 'adventure' | 'wildlife' | 'beach' | 'cultural';
+  category: 'spiritual' | 'adventure' | 'wildlife' | 'beach' | 'cultural' | 'rental';
   suitedFor?: ('families' | 'couples' | 'groups' | 'solo')[] | null;
   region: 'deoghar' | 'pan-india';
   durationDays?: number | null;

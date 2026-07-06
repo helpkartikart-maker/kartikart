@@ -10,6 +10,7 @@ export const CATEGORY_LABELS: Record<string, string> = {
   wildlife: 'Wildlife',
   beach: 'Beach',
   cultural: 'Cultural',
+  rental: 'Rentals',
 }
 
 export const SUITED_LABELS: Record<string, string> = {

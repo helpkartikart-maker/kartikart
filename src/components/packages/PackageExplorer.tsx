@@ -7,7 +7,7 @@ import { PackageCard } from './PackageCard'
 import { CATEGORY_LABELS } from '@/lib/format'
 import styles from './PackageExplorer.module.css'
 
-const CATEGORIES = ['all', ...Object.keys(CATEGORY_LABELS)]
+const CATEGORY_ORDER = Object.keys(CATEGORY_LABELS)
 const REGIONS = [
   { v: 'all', l: 'All India' },
   { v: 'deoghar', l: 'Deoghar & Local' },
@@ -18,6 +18,11 @@ export function PackageExplorer({ packages }: { packages: Package[] }) {
   const [category, setCategory] = useState('all')
   const [region, setRegion] = useState('all')
   const [q, setQ] = useState('')
+
+  const categories = useMemo(() => {
+    const present = new Set(packages.map((p) => p.category).filter(Boolean) as string[])
+    return ['all', ...CATEGORY_ORDER.filter((c) => present.has(c))]
+  }, [packages])
 
   const filtered = useMemo(
     () =>
@@ -37,7 +42,7 @@ export function PackageExplorer({ packages }: { packages: Package[] }) {
     <div>
       <div className={styles.filters}>
         <div className={styles.pills}>
-          {CATEGORIES.map((c) => (
+          {categories.map((c) => (
             <button
               key={c}
               type="button"
