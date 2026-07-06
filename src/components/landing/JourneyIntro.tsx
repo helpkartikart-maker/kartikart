@@ -18,7 +18,7 @@ export function JourneyIntro({ onDone }: { onDone?: () => void }) {
   const [show, setShow] = useState(true)
 
   useEffect(() => {
-    const t = setTimeout(() => setShow(false), 4300)
+    const t = setTimeout(() => setShow(false), 4900)
     return () => clearTimeout(t)
   }, [])
 
@@ -107,7 +107,7 @@ export function JourneyIntro({ onDone }: { onDone?: () => void }) {
                     style={{ offsetPath: `path('${ROUTE}')`, offsetRotate: 'auto' }}
                     initial={{ offsetDistance: '0%' }}
                     animate={{ offsetDistance: '100%' }}
-                    transition={{ delay: 1.0, duration: 1.35, ease: EASE }}
+                    transition={{ delay: 1.2, duration: 2.4, ease: 'easeInOut' }}
                   >
                     <ellipse cx="0" cy="11" rx="19" ry="3.5" fill="#000" opacity="0.18" />
                     <rect x="-19" y="-5" width="38" height="13" rx="5" fill="#ffc66e" />
@@ -129,12 +129,12 @@ export function JourneyIntro({ onDone }: { onDone?: () => void }) {
                       className={styles.ping}
                       initial={{ opacity: 0 }}
                       animate={{ r: [0, 16, 26], opacity: [0.55, 0.25, 0] }}
-                      transition={{ delay: 2.55, duration: 0.9, ease: 'easeOut' }}
+                      transition={{ delay: 3.5, duration: 0.9, ease: 'easeOut' }}
                     />
                     <motion.g
                       initial={{ y: -48, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 2.15, duration: 0.6, ease: EASE }}
+                      transition={{ delay: 0.95, duration: 0.6, ease: EASE }}
                     >
                       <path d="M0 0 C -11 -15 -11 -28 0 -33 C 11 -28 11 -15 0 0 Z" className={styles.pin} />
                       <circle cx="0" cy="-21" r="4.6" className={styles.pinHole} />
@@ -146,7 +146,7 @@ export function JourneyIntro({ onDone }: { onDone?: () => void }) {
                     fill="#efe6d0"
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 2.4, duration: 0.6, ease: EASE }}
+                    transition={{ delay: 1.6, duration: 0.6, ease: EASE }}
                   >
                     <circle cx="62" cy="196" r="5.5" />
                     <path d="M54 220 Q54 203 62 203 Q70 203 70 220 Z" />
