@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import { getAllFleet } from '@/lib/queries'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { ServiceCard } from '@/components/services/ServiceCard'
@@ -11,6 +13,16 @@ export const metadata: Metadata = {
   title: 'Our Fleet',
   description:
     'Kartikart’s own taxis — SUVs, sedans and tempo travellers with drivers who know Deoghar. Add a cab to your trip for one WhatsApp quote.',
+}
+
+// Show a car photo only if the local file exists (public/fleet/<file>.jpg);
+// otherwise fall back to the placeholder icon so a missing photo never 404s.
+function fleetImage(photo: Parameters<typeof resolveMedia>[0]) {
+  const m = resolveMedia(photo)
+  if (m && m.url.startsWith('/fleet/') && !existsSync(join(process.cwd(), 'public', m.url.slice(1)))) {
+    return null
+  }
+  return m
 }
 
 export default async function FleetPage() {
@@ -48,7 +60,7 @@ export default async function FleetPage() {
                       title={c.name}
                       owned={Boolean(c.ownedByKartikart)}
                       ribbon={c.ownedByKartikart ? 'Kartikart-owned' : typeLabel}
-                      image={resolveMedia(c.photo)}
+                      image={fleetImage(c.photo)}
                       metaLines={metaLines}
                       priceFrom={c.rate}
                       compareAt={c.compareAtRate}

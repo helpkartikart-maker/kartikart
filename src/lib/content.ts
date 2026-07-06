@@ -12,6 +12,7 @@ import type { Experience, Fleet, Package, SiteSetting, Stay, Story } from '@/pay
 
 const items = (arr: string[]) => arr.map((item, i) => ({ id: String(i + 1), item }))
 const img = (slug: string, alt: string) => ({ url: `/packages/${slug}.jpg`, alt })
+const carImg = (file: string, alt: string) => ({ url: `/fleet/${file}.jpg`, alt })
 const carFeatures = items(['AC', 'Music system', 'Experienced driver'])
 const stayAmenities = items(['Free WiFi', 'Restaurant', 'Near Baba Mandir'])
 
@@ -336,11 +337,13 @@ export const packages = [
   },
 ] as unknown as Package[]
 
+// Car photos live at `public/fleet/<file>.jpg` — drop your own in with these names.
+// The fleet page shows the photo when the file exists, else a placeholder icon.
 export const fleet = [
-  { id: 1, name: 'Toyota Glanza', type: 'sedan', seats: 4, luggage: '2 bags', rate: 2200, rateNote: '8 hrs / 80 km · budget' },
-  { id: 2, name: 'Maruti Suzuki Dzire', type: 'sedan', seats: 4, luggage: '2 bags', rate: 2500, rateNote: '8 hrs / 80 km' },
-  { id: 3, name: 'Toyota Rumion', type: 'suv', seats: 7, luggage: '3 bags', rate: 2500, rateNote: '8 hrs / 80 km · +₹12/km' },
-  { id: 4, name: 'Maruti Suzuki Ertiga', type: 'suv', seats: 7, luggage: '3 bags', rate: 2500, rateNote: '8 hrs / 80 km · outstation available' },
+  { id: 1, name: 'Toyota Glanza', type: 'sedan', seats: 4, luggage: '2 bags', rate: 2200, rateNote: '8 hrs / 80 km · budget', photo: carImg('glanza', 'Toyota Glanza') },
+  { id: 2, name: 'Maruti Suzuki Dzire', type: 'sedan', seats: 4, luggage: '2 bags', rate: 2500, rateNote: '8 hrs / 80 km', photo: carImg('dzire', 'Maruti Suzuki Dzire') },
+  { id: 3, name: 'Toyota Rumion', type: 'suv', seats: 7, luggage: '3 bags', rate: 2500, rateNote: '8 hrs / 80 km · +₹12/km', photo: carImg('rumion', 'Toyota Rumion') },
+  { id: 4, name: 'Maruti Suzuki Ertiga', type: 'suv', seats: 7, luggage: '3 bags', rate: 2500, rateNote: '8 hrs / 80 km · outstation available', photo: carImg('ertiga', 'Maruti Suzuki Ertiga') },
   {
     id: 5,
     name: 'Toyota Innova Crysta',
@@ -350,13 +353,13 @@ export const fleet = [
     rate: 3500,
     compareAtRate: 3700,
     rateNote: '8 hrs / 80 km · +₹15/km · outstation ₹20/km',
+    photo: carImg('innova-crysta', 'Toyota Innova Crysta'),
   },
 ].map((c) => ({
   ...c,
   ownedByKartikart: true,
   status: 'published',
   features: carFeatures,
-  photo: null,
 })) as unknown as Fleet[]
 
 export const stays = [
