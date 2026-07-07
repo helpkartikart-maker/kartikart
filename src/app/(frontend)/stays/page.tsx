@@ -47,6 +47,9 @@ export default async function StaysPage() {
                   s.location ?? null,
                   ...(s.amenities?.slice(0, 2).map((a) => a.item as string) ?? []),
                 ].filter(Boolean) as string[]
+                const images = (s.photos ?? [])
+                  .map((ph) => stayImage(ph.image))
+                  .filter(Boolean) as { url: string; alt: string }[]
                 const cartItem: CartItem = {
                   id: `hotel:${s.id}`,
                   kind: 'hotel',
@@ -61,7 +64,7 @@ export default async function StaysPage() {
                       title={s.name}
                       owned={owned}
                       ribbon={owned ? 'Kartikart-owned' : 'Partner stay'}
-                      image={stayImage(s.photos?.[0]?.image)}
+                      images={images}
                       metaLines={metaLines}
                       blurb={s.shortDesc}
                       mapUrl={s.mapUrl}

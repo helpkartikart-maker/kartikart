@@ -377,7 +377,12 @@ export const stays = [
     mapUrl: 'https://maps.app.goo.gl/gTHHuuYULt8wd3DYA',
     status: 'published',
     amenities: items(['300 m from Baba Mandir', 'AC rooms', 'Free WiFi', 'Room service']),
-    photos: [{ id: '1', image: stayImg('hotel-kartik', 'Hotel Kartik, Tower Chowk, Deoghar') }],
+    photos: [
+      { id: '1', image: stayImg('hotel-kartik-1', 'Hotel Kartik deluxe room, Deoghar') },
+      { id: '2', image: stayImg('hotel-kartik-2', 'Hotel Kartik AC room') },
+      { id: '3', image: stayImg('hotel-kartik-3', 'Hotel Kartik on Tower Chowk, Deoghar') },
+      { id: '4', image: stayImg('hotel-kartik-4', 'Hotel Kartik bathroom') },
+    ],
   },
   {
     id: 2,

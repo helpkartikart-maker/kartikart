@@ -3,6 +3,7 @@ import { ArrowUpRight, BedDouble, Car, Landmark, UtensilsCrossed } from 'lucide-
 import { AddToTripButton } from '../cart/AddToTripButton'
 import type { CartItem, CartKind } from '../cart/CartContext'
 import { formatPrice } from '@/lib/format'
+import { CardGallery } from './CardGallery'
 import styles from './ServiceCard.module.css'
 
 const ICONS: Record<CartKind, typeof Car> = {
@@ -14,6 +15,7 @@ const ICONS: Record<CartKind, typeof Car> = {
 
 export function ServiceCard({
   image,
+  images,
   ribbon,
   chip,
   title,
@@ -27,6 +29,7 @@ export function ServiceCard({
   owned = false,
 }: {
   image?: { url: string; alt: string } | null
+  images?: { url: string; alt: string }[] | null
   ribbon?: string | null
   chip: string
   title: string
@@ -42,12 +45,15 @@ export function ServiceCard({
   const Icon = ICONS[cartItem.kind] ?? Landmark
   const price = formatPrice(priceFrom)
   const was = formatPrice(compareAt)
+  const gallery = images?.length ? images : image ? [image] : []
 
   return (
     <article className={styles.card}>
       <div className={styles.media}>
-        {image ? (
-          <Image src={image.url} alt={image.alt} fill sizes="(max-width: 700px) 100vw, 360px" className={styles.img} />
+        {gallery.length > 1 ? (
+          <CardGallery images={gallery} />
+        ) : gallery.length === 1 ? (
+          <Image src={gallery[0].url} alt={gallery[0].alt} fill sizes="(max-width: 700px) 100vw, 360px" className={styles.img} />
         ) : (
           <div className={styles.placeholder} aria-hidden>
             <Icon size={30} strokeWidth={1.5} />

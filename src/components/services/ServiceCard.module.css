@@ -51,6 +51,7 @@
   background: rgba(11, 30, 68, 0.72);
   color: #fff;
   backdrop-filter: blur(4px);
+  z-index: 3;
 }
 .ribbon[data-owned='true'] {
   background: var(--vermilion);
