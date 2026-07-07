@@ -300,6 +300,10 @@ export interface Stay {
       }[]
     | null;
   shortDesc?: string | null;
+  /**
+   * Google Maps link (optional — shows a "View on map" link)
+   */
+  mapUrl?: string | null;
   description?: {
     root: {
       type: string;
@@ -655,6 +659,7 @@ export interface StaysSelect<T extends boolean = true> {
         id?: T;
       };
   shortDesc?: T;
+  mapUrl?: T;
   description?: T;
   priceFrom?: T;
   priceNote?: T;

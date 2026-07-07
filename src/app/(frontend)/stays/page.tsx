@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import { getAllStays } from '@/lib/queries'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { ServiceCard } from '@/components/services/ServiceCard'
@@ -6,6 +8,16 @@ import { Reveal } from '@/components/ui/Reveal'
 import { STAY_OWNERSHIP_LABELS, label } from '@/lib/format'
 import { resolveMedia } from '@/lib/media'
 import type { CartItem } from '@/components/cart/CartContext'
+
+// Show a hotel photo only if the local file exists (public/stays/<file>.jpg);
+// otherwise fall back to the placeholder icon so a missing photo never 404s.
+function stayImage(photo: Parameters<typeof resolveMedia>[0]) {
+  const m = resolveMedia(photo)
+  if (m && m.url.startsWith('/stays/') && !existsSync(join(process.cwd(), 'public', m.url.slice(1)))) {
+    return null
+  }
+  return m
+}
 
 export const metadata: Metadata = {
   title: 'Stays & Hotels',
@@ -49,8 +61,10 @@ export default async function StaysPage() {
                       title={s.name}
                       owned={owned}
                       ribbon={owned ? 'Kartikart-owned' : 'Partner stay'}
-                      image={resolveMedia(s.photos?.[0]?.image)}
+                      image={stayImage(s.photos?.[0]?.image)}
                       metaLines={metaLines}
+                      blurb={s.shortDesc}
+                      mapUrl={s.mapUrl}
                       priceFrom={s.priceFrom}
                       priceNote={s.priceNote}
                       cartItem={cartItem}

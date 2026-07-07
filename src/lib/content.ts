@@ -14,8 +14,8 @@ const items = (arr: string[]) => arr.map((item, i) => ({ id: String(i + 1), item
 const img = (slug: string, alt: string) => ({ url: `/packages/${slug}.jpg`, alt })
 const carImg = (file: string, alt: string) => ({ url: `/fleet/${file}.jpg`, alt })
 const expImg = (file: string, alt: string) => ({ url: `/experiences/${file}.jpg`, alt })
+const stayImg = (file: string, alt: string) => ({ url: `/stays/${file}.jpg`, alt })
 const carFeatures = items(['AC', 'Music system', 'Experienced driver'])
-const stayAmenities = items(['Free WiFi', 'Restaurant', 'Near Baba Mandir'])
 
 export const siteSettings = {
   brandTagline: 'Har Safar, Yaadgaar Safar',
@@ -364,17 +364,22 @@ export const fleet = [
 })) as unknown as Fleet[]
 
 export const stays = [
-  { id: 1, name: 'Kartikart Residency, Deoghar', ownership: 'owned', starRating: 3, priceFrom: 1999 },
-  { id: 2, name: 'Kartikart Grand, Deoghar', ownership: 'owned', starRating: 4, priceFrom: 3499 },
-  { id: 3, name: 'Shri Baidyanath Guest House (Partner)', ownership: 'partner', starRating: 3, priceFrom: 1499 },
-].map((s) => ({
-  ...s,
-  location: 'Deoghar',
-  priceNote: 'per night',
-  status: 'published',
-  amenities: stayAmenities,
-  photos: null,
-})) as unknown as Stay[]
+  {
+    id: 1,
+    name: 'Hotel Kartik',
+    ownership: 'owned',
+    location: 'Tower Chowk, Deoghar',
+    starRating: null,
+    priceFrom: null,
+    priceNote: 'per night',
+    shortDesc:
+      'Kartikart’s own hotel, right on Tower Chowk — a premium address just 300 m (a short walk) from Baba Baidyanath Mandir.',
+    mapUrl: 'https://maps.app.goo.gl/gTHHuuYULt8wd3DYA',
+    status: 'published',
+    amenities: items(['300 m from Baba Mandir', 'AC rooms', 'Free WiFi', 'Room service']),
+    photos: [{ id: '1', image: stayImg('hotel-kartik', 'Hotel Kartik, Tower Chowk, Deoghar') }],
+  },
+] as unknown as Stay[]
 
 export const experiences = [
   {

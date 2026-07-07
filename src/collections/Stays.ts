@@ -30,6 +30,7 @@ export const Stays: CollectionConfig = {
     { name: 'amenities', type: 'array', fields: [{ name: 'item', type: 'text' }] },
     { name: 'photos', type: 'array', fields: [{ name: 'image', type: 'upload', relationTo: 'media' }] },
     { name: 'shortDesc', type: 'textarea' },
+    { name: 'mapUrl', type: 'text', admin: { description: 'Google Maps link (optional — shows a "View on map" link)' } },
     { name: 'description', type: 'richText' },
     {
       type: 'row',
