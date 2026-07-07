@@ -336,6 +336,18 @@ export interface Experience {
   title: string;
   kind: 'food' | 'heritage' | 'cultural';
   location?: string | null;
+  /**
+   * e.g. "Peda · Rasgulla · Sweets"
+   */
+  specialty?: string | null;
+  /**
+   * One or two lines shown on the card
+   */
+  blurb?: string | null;
+  /**
+   * Google Maps link (optional — shows a "View on map" link)
+   */
+  mapUrl?: string | null;
   description?: {
     root: {
       type: string;
@@ -658,6 +670,9 @@ export interface ExperiencesSelect<T extends boolean = true> {
   title?: T;
   kind?: T;
   location?: T;
+  specialty?: T;
+  blurb?: T;
+  mapUrl?: T;
   description?: T;
   photos?:
     | T

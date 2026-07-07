@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { BedDouble, Car, Landmark, UtensilsCrossed } from 'lucide-react'
+import { ArrowUpRight, BedDouble, Car, Landmark, UtensilsCrossed } from 'lucide-react'
 import { AddToTripButton } from '../cart/AddToTripButton'
 import type { CartItem, CartKind } from '../cart/CartContext'
 import { formatPrice } from '@/lib/format'
@@ -18,6 +18,8 @@ export function ServiceCard({
   chip,
   title,
   metaLines,
+  blurb,
+  mapUrl,
   priceFrom,
   compareAt,
   priceNote,
@@ -29,6 +31,8 @@ export function ServiceCard({
   chip: string
   title: string
   metaLines?: string[]
+  blurb?: string | null
+  mapUrl?: string | null
   priceFrom?: number | null
   compareAt?: number | null
   priceNote?: string | null
@@ -64,6 +68,12 @@ export function ServiceCard({
               <li key={i}>{m}</li>
             ))}
           </ul>
+        ) : null}
+        {blurb ? <p className={styles.blurb}>{blurb}</p> : null}
+        {mapUrl ? (
+          <a className={styles.mapLink} href={mapUrl} target="_blank" rel="noopener noreferrer">
+            View on Google Maps <ArrowUpRight size={13} />
+          </a>
         ) : null}
         <div className={styles.footer}>
           <span className={styles.price}>

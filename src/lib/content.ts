@@ -13,6 +13,7 @@ import type { Experience, Fleet, Package, SiteSetting, Stay, Story } from '@/pay
 const items = (arr: string[]) => arr.map((item, i) => ({ id: String(i + 1), item }))
 const img = (slug: string, alt: string) => ({ url: `/packages/${slug}.jpg`, alt })
 const carImg = (file: string, alt: string) => ({ url: `/fleet/${file}.jpg`, alt })
+const expImg = (file: string, alt: string) => ({ url: `/experiences/${file}.jpg`, alt })
 const carFeatures = items(['AC', 'Music system', 'Experienced driver'])
 const stayAmenities = items(['Free WiFi', 'Restaurant', 'Near Baba Mandir'])
 
@@ -378,13 +379,40 @@ export const stays = [
 export const experiences = [
   {
     id: 1,
-    title: 'Deoghar Peda & Prasad Thali Trail',
+    title: 'Chamari Sah Mistaan Bhandar',
     kind: 'food',
     location: 'Deoghar',
-    partnerEatery: 'Local partner eateries',
+    specialty: 'Peda · Rasgulla · Chhena sweets',
+    blurb:
+      'One of Deoghar’s oldest sweet shops — famous for melt-in-the-mouth peda and rasgullas, made the authentic way for generations.',
+    mapUrl: 'https://maps.app.goo.gl/f37SuJou6swFMDec6',
     featured: true,
     status: 'published',
-    photos: null,
+    photos: [{ id: '1', image: expImg('chamari-sah-mistaan', 'Peda & rasgulla at Chamari Sah Mistaan, Deoghar') }],
+  },
+  {
+    id: 2,
+    title: 'Kailash Bhojnalaya',
+    kind: 'food',
+    location: 'Deoghar',
+    specialty: 'Veg thali · Home-style bhojan',
+    blurb:
+      'Deoghar’s go-to for honest, home-style vegetarian food — a hearty in-house thali that tastes like it was cooked at home.',
+    featured: true,
+    status: 'published',
+    photos: [{ id: '1', image: expImg('kailash-bhojnalaya', 'Vegetarian thali at Kailash Bhojnalaya, Deoghar') }],
+  },
+  {
+    id: 3,
+    title: 'Baba Baidyanath Dham & Heritage Walk',
+    kind: 'heritage',
+    location: 'Deoghar',
+    specialty: 'Jyotirlinga · Tapovan · Naulakha',
+    blurb:
+      'The living heart of Deoghar — Baba Baidyanath Jyotirlinga darshan, the Tapovan caves and Naulakha temple, with the stories behind them.',
+    featured: false,
+    status: 'published',
+    photos: [{ id: '1', image: { url: '/packages/baba-baidyanath-darshan.jpg', alt: 'Baba Baidyanath Dham, Deoghar' } }],
   },
 ] as unknown as Experience[]
 

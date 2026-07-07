@@ -85,9 +85,29 @@
   left: -0.65rem;
   color: var(--saffron);
 }
+.blurb {
+  margin: 0.55rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.mapLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--saffron-600);
+  text-decoration: none;
+  width: fit-content;
+}
+.mapLink:hover {
+  text-decoration: underline;
+}
 .footer {
   margin-top: auto;
-  padding-top: 0.4rem;
+  padding-top: 0.75rem;
 }
 .price {
   font-family: var(--font-mono), monospace;
