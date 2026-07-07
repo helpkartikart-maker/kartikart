@@ -379,6 +379,21 @@ export const stays = [
     amenities: items(['300 m from Baba Mandir', 'AC rooms', 'Free WiFi', 'Room service']),
     photos: [{ id: '1', image: stayImg('hotel-kartik', 'Hotel Kartik, Tower Chowk, Deoghar') }],
   },
+  {
+    id: 2,
+    name: 'Mastiff Select, Deoghar',
+    ownership: 'partner',
+    location: 'Medha Plaza, Deoghar',
+    starRating: null,
+    priceFrom: null,
+    priceNote: 'per night',
+    shortDesc:
+      'A modern partner hotel at Medha Plaza — spacious, well-appointed rooms and full amenities for a comfortable Deoghar stay.',
+    mapUrl: 'https://maps.app.goo.gl/4FuQgRs79fL1NpHx9',
+    status: 'published',
+    amenities: items(['Restaurant', 'AC rooms', 'Free WiFi', 'Room service']),
+    photos: [{ id: '1', image: stayImg('mastiff', 'Mastiff Select hotel room, Deoghar') }],
+  },
 ] as unknown as Stay[]
 
 export const experiences = [
