@@ -26,6 +26,9 @@ export function Footer({ settings }: { settings: SiteSetting }) {
               Taxi se Hotel tak, Khana se Heritage tak — one hand holds your whole journey across
               Deoghar and India.
             </p>
+            <p className={styles.directors}>
+              Directors — <strong>Alok Anand</strong> &amp; <strong>Gulshan</strong>
+            </p>
           </div>
 
           <div className={styles.linksCol}>
