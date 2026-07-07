@@ -85,7 +85,7 @@ export default async function HomePage() {
               <Car size={16} /> 5 own cars
             </li>
             <li>
-              <BedDouble size={16} /> 2 own hotels
+              <BedDouble size={16} /> Own + partner hotels
             </li>
             <li>
               <MapPin size={16} /> Deoghar-rooted

@@ -33,7 +33,7 @@ export default async function StaysPage() {
       <PageHeader
         eyebrow="Stays & Hotels"
         title="Rest easy, near the Dham"
-        sub="Our own hotels plus trusted local partners — comfortable rooms a short hop from Baba Baidyanath. Add a stay to your trip and we’ll quote it together."
+        sub="Our own Hotel Kartik plus a growing network of trusted partner stays — comfortable rooms a short hop from Baba Baidyanath. Add a stay to your trip and we’ll quote it together."
       />
       <section className="kk-section">
         <div className="kk-container">
