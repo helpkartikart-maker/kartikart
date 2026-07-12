@@ -281,6 +281,12 @@
   color: #fff;
   padding-block: var(--section-y);
 }
+.orbitSection {
+  background: var(--night);
+  color: #fff;
+  padding-block: var(--section-y);
+  overflow: hidden;
+}
 .whyGrid {
   display: grid;
   grid-template-columns: 1fr 1.05fr;

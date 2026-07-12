@@ -18,6 +18,7 @@ import { PackageCard } from '@/components/packages/PackageCard'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
 import { LandingIntro } from '@/components/landing/LandingIntro'
+import { OfferingsOrbit } from '@/components/home/OfferingsOrbit'
 import styles from './home.module.css'
 
 const STAGES = [
@@ -144,6 +145,22 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ---------- OFFERINGS ORBIT ---------- */}
+      <section className={styles.orbitSection}>
+        <div className="kk-container">
+          <Reveal>
+            <SectionHeading
+              light
+              align="center"
+              eyebrow="Sab Kuch, Ek Jagah"
+              title="Your whole yatra, in one orbit"
+              intro="Cabs, stays, heritage food, darshan and prasadi — every part of your Deoghar journey, held by one hand."
+            />
+          </Reveal>
+          <OfferingsOrbit />
+        </div>
+      </section>
+
       {/* ---------- FEATURED PACKAGES ---------- */}
       <section className={`kk-section ${styles.packages}`}>
         <div className="kk-container">
@@ -184,8 +201,8 @@ export default async function HomePage() {
                   <span>cars in our own fleet</span>
                 </div>
                 <div>
-                  <strong>2</strong>
-                  <span>Kartikart-owned hotels</span>
+                  <strong>1</strong>
+                  <span>Kartikart-owned hotel</span>
                 </div>
                 <div>
                   <strong>1</strong>
